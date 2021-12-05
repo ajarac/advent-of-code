@@ -1,15 +1,11 @@
 package dev.ajarac.adventofcode.solution
 
-import java.net.URL
-
 object Day2Solution : Solution(2021, 2, 1) {
-    override fun solvePart1(input: URL): String {
-        val lines = input.readText().trimEnd().lines()
-
+    override fun solvePart1(input: List<String>): String {
         var forward = 0
         var depth = 0
 
-        lines.forEach { line ->
+        input.forEach { line ->
             val value = line.substringAfter(' ').toInt()
 
             when (line[0]) {
@@ -22,14 +18,12 @@ object Day2Solution : Solution(2021, 2, 1) {
         return "${forward * depth}"
     }
 
-    override fun solvePart2(input: URL): String {
-        val lines = input.readText().trimEnd().lines()
-
+    override fun solvePart2(input: List<String>): String {
         var aim = 0
         var depth = 0
         var forward = 0
 
-        lines.forEach { line ->
+        input.forEach { line ->
             val value = line.substringAfter(' ').toInt()
 
             when (line[0]) {

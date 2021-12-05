@@ -9,9 +9,10 @@ import java.net.URL
 abstract class Solution(private val year: Int, private val day: Int, private val iterations: Int) {
     fun solve() {
         terminal.println(brightCyan("\uD83D\uDD25 Solving day ${day} of year ${year}..."))
-
+        val input = InputUtils.getInput(day)
+        val inputLines = input.readText().trimEnd().lines()
         val part1 = BenchmarkUtils.getAverageMs(iterations) {
-            solvePart1(InputUtils.getInput(day))
+            solvePart1(inputLines)
         }
 
         if (part1.result == "not present!") {
@@ -22,7 +23,7 @@ abstract class Solution(private val year: Int, private val day: Int, private val
         }
 
         val part2 = BenchmarkUtils.getAverageMs(iterations) {
-            solvePart2(InputUtils.getInput(day))
+            solvePart2(inputLines)
         }
 
         if (part2.result == "not present!") {
@@ -35,7 +36,7 @@ abstract class Solution(private val year: Int, private val day: Int, private val
         terminal.println(brightYellow("⭐ Solved day ${day}!"))
     }
 
-    open fun solvePart1(input: URL): String = "not present!"
+    open fun solvePart1(input: List<String>): String = "not present!"
 
-    open fun solvePart2(input: URL): String = "not present!"
+    open fun solvePart2(input: List<String>): String = "not present!"
 }
