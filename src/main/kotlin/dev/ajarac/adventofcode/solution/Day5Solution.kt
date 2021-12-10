@@ -1,6 +1,7 @@
 package dev.ajarac.adventofcode.solution
 
-typealias Point = Pair<Int, Int>
+import dev.ajarac.adventofcode.util.Point
+import dev.ajarac.adventofcode.util.str
 
 object Day5Solution : Solution(2021, 5, 1) {
 
@@ -56,8 +57,9 @@ object Day5Solution : Solution(2021, 5, 1) {
                 val from: Point = if (pointA.first < pointB.first) pointA else pointB
                 val to: Point = if (pointA.first < pointB.first) pointB else pointA
                 val diff = to.first - from.first
-                for(it in 0..diff) {
-                    val secondValue = if(from.second < to.second) from.second + it else from.second - it
+                for (it in 0..diff) {
+                    val secondValue =
+                        if (from.second < to.second) from.second + it else from.second - it
                     val point = Point(from.first + it, secondValue)
                     mapPoints[point.str()] = mapPoints[point.str()]?.inc() ?: 1
                 }
@@ -68,7 +70,6 @@ object Day5Solution : Solution(2021, 5, 1) {
     }
 }
 
-fun Point.str() = "${this.first}-${this.second}"
 
 data class Line(val pointA: Point, val pointB: Point) {
     companion object {
