@@ -1,14 +1,8 @@
 package dev.ajarac.adventofcode.solution
 
-import dev.ajarac.adventofcode.util.Point
-import dev.ajarac.adventofcode.util.str
+import dev.ajarac.adventofcode.util.*
 
-typealias Matrix = HashMap<Int, HashMap<Int, Int>>
 
-fun Matrix.has(point: Point): Boolean =
-    this[point.first] != null && this[point.first]!![point.second] != null
-
-fun Matrix.get(point: Point) = this[point.first]!![point.second]!!
 fun Point.getNeighbours(): List<Point> = listOf(
     Point(this.first - 1, this.second),
     Point(this.first + 1, this.second),
@@ -21,7 +15,7 @@ object Day9Solution : Solution(2021, 9, 1) {
     override fun solvePart1(input: List<String>): String {
         val matrix = buildMatrix(input)
         val lowPoints = getLowPoints(matrix)
-        return lowPoints.sumOf { matrix.get(it) + 1 }.toString()
+        return lowPoints.sumOf { matrix.getValue(it) + 1 }.toString()
     }
 
     private fun getLowPoints(matrix: Matrix): ArrayList<Point> {
@@ -58,7 +52,7 @@ object Day9Solution : Solution(2021, 9, 1) {
     ): Set<String> {
         points.add(point.str())
         point.getNeighbours()
-            .filter { matrix.has(it) && !points.contains(it.str()) && matrix.get(it) != 9 }
+            .filter { matrix.has(it) && !points.contains(it.str()) && matrix.getValue(it) != 9 }
             .forEach { calculateBasin(matrix, it, points) }
         return points
     }
@@ -77,7 +71,7 @@ object Day9Solution : Solution(2021, 9, 1) {
 
     private fun isTheLowerPoint(matrix: Matrix, point: Point): Boolean {
         return point.getNeighbours().filter { matrix.has(it) }
-            .all { matrix.get(it) > matrix.get(point) }
+            .all { matrix.getValue(it) > matrix.getValue(point) }
 
     }
 }
