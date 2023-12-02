@@ -1,4 +1,6 @@
-package dev.ajarac.adventofcode.solution
+package dev.ajarac.adventofcode.solution.year_2021
+
+import dev.ajarac.adventofcode.solution.Solution
 
 object Day12Solution : Solution(2021, 12, 1) {
     private const val START = "start"

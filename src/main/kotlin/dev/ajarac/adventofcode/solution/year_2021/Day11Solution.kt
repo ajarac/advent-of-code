@@ -1,5 +1,6 @@
-package dev.ajarac.adventofcode.solution
+package dev.ajarac.adventofcode.solution.year_2021
 
+import dev.ajarac.adventofcode.solution.Solution
 import dev.ajarac.adventofcode.util.*
 
 

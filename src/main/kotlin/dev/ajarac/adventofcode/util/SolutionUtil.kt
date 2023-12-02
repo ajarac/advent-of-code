@@ -1,6 +1,6 @@
 package dev.ajarac.adventofcode.util
 
-import dev.ajarac.adventofcode.solution.*
+import dev.ajarac.adventofcode.solution.year_2021.*
 
 object SolutionUtils {
     val Solutions =

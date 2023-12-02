@@ -1,5 +1,6 @@
-package dev.ajarac.adventofcode.solution
+package dev.ajarac.adventofcode.solution.year_2021
 
+import dev.ajarac.adventofcode.solution.Solution
 import kotlin.math.abs
 
 object Day7Solution : Solution(2021, 7, 1) {

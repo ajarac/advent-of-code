@@ -1,4 +1,6 @@
-package dev.ajarac.adventofcode.solution
+package dev.ajarac.adventofcode.solution.year_2021
+
+import dev.ajarac.adventofcode.solution.Solution
 
 object Day2Solution : Solution(2021, 2, 1) {
     override fun solvePart1(input: List<String>): String {

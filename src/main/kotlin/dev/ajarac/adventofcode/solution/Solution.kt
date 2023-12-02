@@ -7,15 +7,20 @@ import dev.ajarac.adventofcode.terminal
 import java.net.URL
 
 abstract class Solution(private val year: Int, private val day: Int, private val iterations: Int) {
+
+    companion object {
+        private const val NOT_PRESENT = "not present!"
+    }
+
     fun solve() {
         terminal.println(brightCyan("\uD83D\uDD25 Solving day ${day} of year ${year}..."))
-        val input = InputUtils.getInput(day)
+        val input = InputUtils.getInput(year, day)
         val inputLines = input.readText().trimEnd().lines()
         val part1 = BenchmarkUtils.getAverageMs(iterations) {
             solvePart1(inputLines)
         }
 
-        if (part1.result == "not present!") {
+        if (part1.result == NOT_PRESENT) {
             terminal.println(brightRed("=> ⭐  Skipped part one!"))
         } else {
             terminal.println(brightGreen("=> ⭐  Solved part one: ${part1.result}!"))
@@ -36,7 +41,7 @@ abstract class Solution(private val year: Int, private val day: Int, private val
         terminal.println(brightYellow("⭐ Solved day ${day}!"))
     }
 
-    open fun solvePart1(input: List<String>): String = "not present!"
+    open fun solvePart1(input: List<String>): String = NOT_PRESENT
 
-    open fun solvePart2(input: List<String>): String = "not present!"
+    open fun solvePart2(input: List<String>): String = NOT_PRESENT
 }
