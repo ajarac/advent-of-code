@@ -1,10 +1,9 @@
 package dev.ajarac.adventofcode.solution
 
 import com.github.ajalt.mordant.rendering.TextColors.*
+import dev.ajarac.adventofcode.terminal
 import dev.ajarac.adventofcode.util.BenchmarkUtils
 import dev.ajarac.adventofcode.util.InputUtils
-import dev.ajarac.adventofcode.terminal
-import java.net.URL
 
 abstract class Solution(private val year: Int, private val day: Int, private val iterations: Int) {
 
@@ -13,7 +12,7 @@ abstract class Solution(private val year: Int, private val day: Int, private val
     }
 
     fun solve() {
-        terminal.println(brightCyan("\uD83D\uDD25 Solving day ${day} of year ${year}..."))
+        terminal.println(brightCyan("\uD83D\uDD25 Solving day $day of year $year..."))
         val input = InputUtils.getInput(year, day)
         val inputLines = input.readText().trimEnd().lines()
         val part1 = BenchmarkUtils.getAverageMs(iterations) {
@@ -38,7 +37,7 @@ abstract class Solution(private val year: Int, private val day: Int, private val
             terminal.println(brightMagenta("=>    ...in ${part2.average}ms."))
         }
 
-        terminal.println(brightYellow("⭐ Solved day ${day}!"))
+        terminal.println(brightYellow("⭐ Solved day $day!"))
     }
 
     open fun solvePart1(input: List<String>): String = NOT_PRESENT
