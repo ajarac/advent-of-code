@@ -58,7 +58,8 @@ object Day2Solution : Solution(2023, 2, 1) {
     }
 
     private fun buildPlay(subSetOfCubes: String): Play {
-        val map = subSetOfCubes.split(",")
+        return subSetOfCubes.split(",")
+            .asSequence()
             .map { boxes -> boxes.trim().split(" ") }
             .fold(mutableMapOf<Color, Int>()) { map, box ->
                 val count = box.first().toInt()
@@ -69,18 +70,19 @@ object Day2Solution : Solution(2023, 2, 1) {
                 map[color] = map[color]!! + count
                 map
             }
-        return Play(map)
+            .let { Play(it) }
     }
 
     override fun solvePart1(input: List<String>): String {
-        return input.sumOf { line ->
-            val game = buildGame(line)
-            if (game.isValid(RULES_VALID_GAME)) {
-                game.id
-            } else {
-                0
-            }
-        }.toString()
+        return input
+            .sumOf { line ->
+                val game = buildGame(line)
+                if (game.isValid(RULES_VALID_GAME)) {
+                    game.id
+                } else {
+                    0
+                }
+            }.toString()
 
     }
 

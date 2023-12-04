@@ -1,6 +1,5 @@
 package dev.ajarac.adventofcode.util
 
-
 import kotlin.time.ExperimentalTime
 import kotlin.time.measureTimedValue
 
