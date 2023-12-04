@@ -2,7 +2,7 @@ package dev.ajarac.adventofcode.solution.year_2023
 
 import dev.ajarac.adventofcode.solution.Solution
 
-object Day3Solution : Solution(2023, 3, 2) {
+object Day3Solution : Solution(2023, 3, 1) {
 
     private const val AVOID_SYMBOL = '.'
     private const val GEAR_SYMBOL = '*'
