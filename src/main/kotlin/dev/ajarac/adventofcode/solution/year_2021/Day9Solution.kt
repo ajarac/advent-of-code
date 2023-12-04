@@ -4,13 +4,6 @@ import dev.ajarac.adventofcode.solution.Solution
 import dev.ajarac.adventofcode.util.*
 
 
-fun Point.getNeighbours(): List<Point> = listOf(
-    Point(this.first - 1, this.second),
-    Point(this.first + 1, this.second),
-    Point(this.first, this.second - 1),
-    Point(this.first, this.second + 1)
-)
-
 object Day9Solution : Solution(2021, 9, 1) {
 
     override fun solvePart1(input: List<String>): String {
@@ -75,4 +68,11 @@ object Day9Solution : Solution(2021, 9, 1) {
             .all { matrix.getValue(it) > matrix.getValue(point) }
 
     }
+
+    private fun Point.getNeighbours(): List<Point> = listOf(
+        Point(this.first - 1, this.second),
+        Point(this.first + 1, this.second),
+        Point(this.first, this.second - 1),
+        Point(this.first, this.second + 1)
+    )
 }

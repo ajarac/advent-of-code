@@ -4,6 +4,45 @@ import dev.ajarac.adventofcode.solution.Solution
 
 object Day4Solution : Solution(2021, 4, 1) {
 
+    data class BoardNumber(val value: Int, val x: Int, val y: Int) {
+        private var called = false
+
+        fun called() {
+            called = true
+        }
+
+        fun isCalled() = called
+    }
+
+    data class Board(val numbers: List<BoardNumber>) {
+        private var hasWon = false
+
+        fun callNumber(wonNumber: Int) {
+            if (!hasWon) {
+                for (num in numbers) {
+                    if (wonNumber == num.value) {
+                        num.called()
+                    }
+                }
+            }
+            hasWon = hasCompleteRow() || hasCompleteColumn()
+        }
+
+        fun hasWon() = hasWon
+
+        fun calcResult(wonNumber: Int): Int {
+            return numbers.filterNot { it.isCalled() }
+                .sumOf { it.value } * wonNumber
+        }
+
+        private fun hasCompleteRow() =
+            numbers.groupBy { it.x }.any { (_, value) -> value.all(BoardNumber::isCalled) }
+
+        private fun hasCompleteColumn() =
+            numbers.groupBy { it.y }.any { (_, value) -> value.all(BoardNumber::isCalled) }
+    }
+
+
     private const val SIZE = 5
 
     override fun solvePart1(input: List<String>): String {
@@ -71,42 +110,4 @@ object Day4Solution : Solution(2021, 4, 1) {
         input.subList(2, input.size).flatMap {
             it.split(" ").filterNot(String::isBlank).map(String::toInt)
         }.toList()
-}
-
-data class BoardNumber(val value: Int, val x: Int, val y: Int) {
-    private var called = false
-
-    fun called() {
-        called = true
-    }
-
-    fun isCalled() = called
-}
-
-data class Board(val numbers: List<BoardNumber>) {
-    private var hasWon = false
-
-    fun callNumber(wonNumber: Int) {
-        if (!hasWon) {
-            for (num in numbers) {
-                if (wonNumber == num.value) {
-                    num.called()
-                }
-            }
-        }
-        hasWon = hasCompleteRow() || hasCompleteColumn()
-    }
-
-    fun hasWon() = hasWon
-
-    fun calcResult(wonNumber: Int): Int {
-        return numbers.filterNot { it.isCalled() }
-            .sumOf { it.value } * wonNumber
-    }
-
-    private fun hasCompleteRow() =
-        numbers.groupBy { it.x }.any { (_, value) -> value.all(BoardNumber::isCalled) }
-
-    private fun hasCompleteColumn() =
-        numbers.groupBy { it.y }.any { (_, value) -> value.all(BoardNumber::isCalled) }
 }

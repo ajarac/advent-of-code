@@ -5,6 +5,18 @@ import dev.ajarac.adventofcode.util.Point
 import dev.ajarac.adventofcode.util.str
 
 object Day5Solution : Solution(2021, 5, 1) {
+    data class Line(val pointA: Point, val pointB: Point) {
+        companion object {
+            fun create(lineString: String): Line {
+                val points = lineString.split(" -> ").map {
+                    val pairs = it.split(",").map(String::toInt)
+                    Point(pairs.first(), pairs.last())
+                }
+                return Line(points.first(), points.last())
+            }
+        }
+    }
+
 
     override fun solvePart1(input: List<String>): String {
         val lines = input.map { Line.create(it) }
@@ -71,15 +83,3 @@ object Day5Solution : Solution(2021, 5, 1) {
     }
 }
 
-
-data class Line(val pointA: Point, val pointB: Point) {
-    companion object {
-        fun create(lineString: String): Line {
-            val points = lineString.split(" -> ").map {
-                val pairs = it.split(",").map(String::toInt)
-                Point(pairs.first(), pairs.last())
-            }
-            return Line(points.first(), points.last())
-        }
-    }
-}

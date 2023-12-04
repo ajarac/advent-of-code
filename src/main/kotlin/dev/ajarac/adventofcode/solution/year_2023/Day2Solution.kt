@@ -2,46 +2,46 @@ package dev.ajarac.adventofcode.solution.year_2023
 
 import dev.ajarac.adventofcode.solution.Solution
 
-enum class Color {
-    RED,
-    GREEN,
-    BLUE;
-
-    companion object {
-        fun fromString(color: String): Color {
-            return when (color.lowercase()) {
-                "red" -> RED
-                "green" -> GREEN
-                "blue" -> BLUE
-                else -> throw IllegalArgumentException("Unknown color $color")
-            }
-        }
-    }
-}
-
-data class Play(val mapOfBoxes: Map<Color, Int>) {
-    fun isValid(rules: Map<Color, Int>) = mapOfBoxes
-        .all { rules[it.key]!! >= it.value }
-}
-
-data class Game(val id: Int, val listPlays: List<Play>) {
-    fun isValid(rules: Map<Color, Int>) = listPlays
-        .all { it.isValid(rules) }
-
-    fun getMinimumBoxesNeeded(): Map<Color, Int> {
-        return listPlays.fold(mutableMapOf()) { map, play ->
-            play.mapOfBoxes.forEach {
-                if (map[it.key] == null) {
-                    map[it.key] = 0
-                }
-                map[it.key] = map[it.key]!!.coerceAtLeast(it.value)
-            }
-            map
-        }
-    }
-}
 
 object Day2Solution : Solution(2023, 2, 1) {
+    enum class Color {
+        RED,
+        GREEN,
+        BLUE;
+
+        companion object {
+            fun fromString(color: String): Color {
+                return when (color.lowercase()) {
+                    "red" -> RED
+                    "green" -> GREEN
+                    "blue" -> BLUE
+                    else -> throw IllegalArgumentException("Unknown color $color")
+                }
+            }
+        }
+    }
+
+    data class Play(val mapOfBoxes: Map<Color, Int>) {
+        fun isValid(rules: Map<Color, Int>) = mapOfBoxes
+            .all { rules[it.key]!! >= it.value }
+    }
+
+    data class Game(val id: Int, val listPlays: List<Play>) {
+        fun isValid(rules: Map<Color, Int>) = listPlays
+            .all { it.isValid(rules) }
+
+        fun getMinimumBoxesNeeded(): Map<Color, Int> {
+            return listPlays.fold(mutableMapOf()) { map, play ->
+                play.mapOfBoxes.forEach {
+                    if (map[it.key] == null) {
+                        map[it.key] = 0
+                    }
+                    map[it.key] = map[it.key]!!.coerceAtLeast(it.value)
+                }
+                map
+            }
+        }
+    }
 
     private val RULES_VALID_GAME = mapOf(
         Color.RED to 12,
