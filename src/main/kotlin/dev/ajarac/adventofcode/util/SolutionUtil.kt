@@ -1,7 +1,7 @@
 package dev.ajarac.adventofcode.util
 
-import dev.ajarac.adventofcode.solution.year_2023.Day5Solution
+import dev.ajarac.adventofcode.solution.year_2023.Day6Solution
 
 object SolutionUtils {
-    val Solutions = listOf(Day5Solution)
+    val Solutions = listOf(Day6Solution)
 }
