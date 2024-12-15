@@ -24,9 +24,11 @@ fun Matrix.getValue(x: Int, y: Int) = this[y]!![x]!!
 fun Matrix.setValue(x: Int, y: Int, value: Int) {
     this[y]!![x] = value
 }
+
 fun Matrix.setValue(point: Point, value: Int) {
     this[point.first]!![point.second] = value
 }
+
 fun Matrix.increment(point: Point) {
     val value = this[point.first]!![point.second] ?: 0
     this[point.first]!![point.second] = value + 1
